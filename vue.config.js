@@ -1,5 +1,6 @@
-module.exports = {
-publicPath: process.env.NODE_ENV === 'production'
-    ? '/WheatherVue/'
-    : '/'
-}
+export default defineConfig({
+    base: '/WheatherVue',
+    plugins: [
+      vue()
+    ]
+  })

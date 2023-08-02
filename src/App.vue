@@ -2,7 +2,7 @@
 export default {
   data() {
     return {
-      message: 'This is some text'
+      message: 'Wheather App using Vue'
     };
   }
 };
