@@ -7,12 +7,13 @@ import weatherblock from './components/weatherblock.vue'
 import getdata from './components/getdata.vue'
 import forcastweather from './components/forcastweather.vue'
 import rader from './components/rader.vue'
-import { createRouter, createWebHistory } from 'vue-router'
+import forcastcom from './components/forcastcom.vue'
+import { createRouter, createWebHashHistory  } from 'vue-router'
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes: [
-        { path: '/WheatherVue', component: getdata , props: true},
+        { path: '/', component: getdata , props: true},
         { path: '/weatherblock', component: weatherblock , props: true},
         { path: '/forcastweather',name:'forcastweather', component: forcastweather},
         { path: '/rader', component: rader , props: true},
@@ -24,5 +25,6 @@ app.component('weather-block', weatherblock)
 app.component('get-data', getdata)
 app.component('forcast-weather',forcastweather)
 app.component('rader',rader)
+app.component('forcastcom',forcastcom)
 app.use(router);
 app.mount('#app')

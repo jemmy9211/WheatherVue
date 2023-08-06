@@ -1,11 +1,10 @@
 <template>
-  <div class="p-3 mb-2 bg-secondary text-white">
-    <router-link class="btn btn-secondary btn-block" :to="{path:'/forcastweather',query:{userId: citynum}}">
-      <h3 class="text-white">{{ city.locationName }}</h3>
-      <h5><span class="badge bg-dark">觀測時間:</span> {{ city.time.obsTime }}</h5>
-      <span class="badge bg-dark">目前觀測氣溫:</span> {{ city.weatherElement[3].elementValue }}
-      <span class="badge bg-dark">天氣描述:</span> {{ city.weatherElement[20].elementValue }}
-      <span class="badge bg-dark">濕度:</span> {{ city.weatherElement[2].elementValue }}
+  <div class="col-lg-4 d-grid gap-1">
+    <router-link class="btn btn-lg bg-primary-subtle border border-primary-subtle rounded-3 border-5 shadow-lg p-3 mb-5 bg-body rounded" :to="{path:'/forcastweather',query:{userId: citynum}}">
+      <h3 class=""><strong>{{ city.locationName }}  {{ city.weatherElement[3].elementValue }}</strong></h3>
+      {{ city.weatherElement[20].elementValue }}
+      <h5>{{ city.time.obsTime }}</h5>
+      <span class="">濕度:</span> {{ city.weatherElement[2].elementValue }}
     </router-link>
   </div>
 </template>

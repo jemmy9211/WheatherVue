@@ -8,7 +8,8 @@ export default {
       MaxT:[],
       MinT:[],
       PoPL:[],
-      Wx:[]
+      Wx:[],
+      totaldata:[]
     };
   },
   beforeCreate(){
@@ -35,6 +36,9 @@ export default {
       this.MinT=res.data.records.location[tep].weatherElement[2].time
       this.PoPL=res.data.records.location[tep].weatherElement[1].time
       this.Wx=res.data.records.location[tep].weatherElement[0].time
+      for(var i=0;i<3;i++){
+        this.totaldata[i]=this.Wx[i].startTime+" to "+this.Wx[i].endTime+"/降雨率:"+this.PoPL[i].parameter.parameterName+"/最低溫:"+this.MinT[i].parameter.parameterName+"/最高溫:"+this.MaxT[i].parameter.parameterName+"/描述:"+this.Wx[i].parameter.parameterName
+      }
     })
   }
 };
@@ -42,10 +46,10 @@ export default {
 
 <template>
   <div class="shadow-lg p-3 mb-5 bg-body rounded">
-    <h2>{{ wdata.locationName }} 未來36小時天氣預測</h2>
+    <h3>{{ wdata.locationName }} 未來36小時預報</h3>
   </div>
   <div class="shadow-lg p-3 mb-5 bg-body rounded">
-    <h2 v-for="x in Wx">{{ x.parameter.parameterName }}</h2>
+    <div v-for="x in totaldata">{{ x }}</div>
   </div>
 </template>
 
