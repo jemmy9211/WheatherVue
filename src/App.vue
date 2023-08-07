@@ -25,7 +25,7 @@
 
 <style>
 body {
- background-image: url("./assets/back.jpg");
+ background-image: url("./assets/material.jpg");
  background-color: #cccccc;
 }
 </style>

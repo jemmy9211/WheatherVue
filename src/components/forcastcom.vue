@@ -28,7 +28,14 @@
     <div class="shadow-lg col-lg-4 d-grid gap-1 bg-opacity-25 bg-dark text-white p-3 border border-light border-3">
         <h5>{{ stime }}點~{{ etime }}點</h5>
         <h4><strong>{{ Wx }}</strong></h4>
-        <h5>{{ MaxT }} {{ MinT }}</h5>
+        最高溫:{{ MaxT }}
+        <div class="progress">
+            <div class="progress-bar bg-danger" v-bind:style="{'width': parseInt(MaxT)*2 +'%'}"></div>
+        </div>
+        最高溫:{{ MinT }}
+        <div class="progress">
+            <div class="progress-bar bg-info" v-bind:style="{'width': parseInt(MinT)*2 +'%'}"></div>
+        </div>
         <h5>{{ PoPL }}%</h5>
     </div>
 </template>
