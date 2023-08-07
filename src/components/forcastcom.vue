@@ -32,11 +32,14 @@
         <div class="progress">
             <div class="progress-bar bg-danger" v-bind:style="{'width': parseInt(MaxT)*2 +'%'}"></div>
         </div>
-        最高溫:{{ MinT }}
+        最低溫:{{ MinT }}
         <div class="progress">
-            <div class="progress-bar bg-info" v-bind:style="{'width': parseInt(MinT)*2 +'%'}"></div>
+            <div class="progress-bar bg-success" v-bind:style="{'width': parseInt(MinT)*2 +'%'}"></div>
         </div>
-        <h5>{{ PoPL }}%</h5>
+        <h5>降雨機率 {{ PoPL }}%</h5>
+        <div class="progress">
+            <div class="progress-bar bg-info" v-bind:style="{'width': parseInt(PoPL) +'%'}"></div>
+        </div>
     </div>
 </template>
 
