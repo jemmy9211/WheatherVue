@@ -24,7 +24,7 @@ export default {
       this.wdatas[10]=res.data.records.location[92]
       this.wdatas[11]=res.data.records.location[129]
       this.data=res.data.records.location
-      console.log(this.wdatas)
+      //console.log(this.wdatas)
     })
   }
 };
@@ -33,7 +33,7 @@ export default {
 <template>
   <div class="container">
     <div class="row g-2">
-      <weather-block v-for="(x,index) in wdatas" 
+      <weather-block v-for="(x,index) in data" 
     v-bind:city="x" :citynum="index"/>
     </div>
   </div>

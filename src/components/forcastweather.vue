@@ -14,23 +14,16 @@ export default {
   },
   beforeCreate(){
     axios.get(url).then((res)=>{
-      console.log(res.data)
+      //console.log(res.data)
       var tep=this.$route.query.userId;
-        switch(tep){
-        case '0' : tep=11;break;
-        case '1' : tep=6;break;
-        case '2' : tep=1;break;
-        case '3' : tep=15;break;
-        case '4' : tep=2;break;
-        case '5' : tep=3;break;
-        case '6' : tep=14;break;
-        case '7' : tep=7;break;
-        case '8' : tep=5;break;
-        case '9' : tep=12;break;
-        case '10' : tep=18;break;
-        case '11' : tep=14;break;
-        default:tep=14;break;
-      };
+      tep=2
+      console.log(res.data.records.location.length)
+      for(var i=0;i<res.data.records.location.length;i++){
+        if(this.$route.query.userId==res.data.records.location[i].locationName){
+          tep=i;
+          console.log(i)
+        }
+      }
       this.wdata=res.data.records.location[tep]
       this.MaxT=res.data.records.location[tep].weatherElement[4].time
       this.MinT=res.data.records.location[tep].weatherElement[2].time

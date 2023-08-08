@@ -8,6 +8,7 @@ import getdata from './components/getdata.vue'
 import forcastweather from './components/forcastweather.vue'
 import rader from './components/rader.vue'
 import forcastcom from './components/forcastcom.vue'
+import wicon from './components/wicon.vue'
 import { createRouter, createWebHashHistory  } from 'vue-router'
 
 const router = createRouter({
@@ -26,5 +27,6 @@ app.component('get-data', getdata)
 app.component('forcast-weather',forcastweather)
 app.component('rader',rader)
 app.component('forcastcom',forcastcom)
+app.component('wicon',wicon)
 app.use(router);
 app.mount('#app')
