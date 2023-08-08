@@ -5,38 +5,43 @@ const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Autho
 export default {
   data() {
     return {
-      wdatas: [],
-      data:null
+      data:[],
+      search: ''
     };
   },
   beforeCreate(){
     axios.get(url).then((res)=>{
-      this.wdatas[0]=res.data.records.location[31]
-      this.wdatas[1]=res.data.records.location[111]
-      this.wdatas[2]=res.data.records.location[45]
-      this.wdatas[3]=res.data.records.location[24]
-      this.wdatas[4]=res.data.records.location[3]
-      this.wdatas[5]=res.data.records.location[35]
-      this.wdatas[6]=res.data.records.location[38]
-      this.wdatas[7]=res.data.records.location[105]
-      this.wdatas[8]=res.data.records.location[14]
-      this.wdatas[9]=res.data.records.location[74]
-      this.wdatas[10]=res.data.records.location[92]
-      this.wdatas[11]=res.data.records.location[129]
       this.data=res.data.records.location
-      //console.log(this.wdatas)
+      //console.log(this.data)
     })
+  },
+  computed: {
+    filteredList() {
+      return this.data.filter(item => item.parameter[0].parameterValue.includes(this.search));
+    }
   }
 };
 </script>
 
 <template>
-  <div class="container">
-    <div class="row g-2">
-      <weather-block v-for="(x,index) in data" 
-    v-bind:city="x" :citynum="index"/>
+  <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></a>
+      <div class="btn-group btn-group-sm border border-dark border-3">
+        <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
+        <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達迴波圖</router-link>
+        <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
+      </div>
+      <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="臺北市/臺南市/金門等關鍵字...">
     </div>
+  </nav>
+  <div class="row p-5">
+      <div class="row g-2">
+        <weather-block v-for="(x,index) in filteredList" 
+      v-bind:city="x" :citynum="index"/>
+      </div>
   </div>
+  
 </template>
 
 <style>

@@ -1,25 +1,9 @@
 <script>
-
 </script>
 
 <template>
-<body >
-  <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
-    <div class="container-fluid">
-      <a class="navbar-brand"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></a>
-      <div class="btn-group btn-group-sm border border-dark border-3">
-        <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
-        <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達迴波圖</router-link>
-        <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
-      </div>
-    </div>
-  </nav>
-  <br>
-  <div class="container">
-    <div class="row">
-        <router-view></router-view>
-    </div>
-  </div>
+<body>
+    <router-view></router-view>
 </body>
 </template>
 
