@@ -40,6 +40,11 @@ export default {
 <template>
   <div class="text-white shadow-lg p-3 mb-5 bg-dark rounded bg-opacity-50">
     <h3>{{ wdata.locationName }} 未來36小時預報</h3>
+    <div class="btn-group btn-group-sm border border-dark border-3 text-white">
+      <router-link type="button" class="btn btn-outline-light" to="/">回首頁</router-link>
+      <router-link type="button" class="btn btn-outline-light" to="/rader">及時雷達迴波圖</router-link>
+      <button type="button" class="btn btn-outline-light" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
+    </div>
   </div>
   <div class="container">
     <div class="row">

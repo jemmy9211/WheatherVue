@@ -29,7 +29,7 @@ export default {
       <a class="navbar-brand"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></a>
       <div class="btn-group btn-group-sm border border-dark border-3">
         <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
-        <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達迴波圖</router-link>
+        <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
         <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
       </div>
       <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="臺北市/臺南市/金門等關鍵字...">
