@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       data:[],
-      search: ''
+      search: '',
     };
   },
   beforeCreate(){
@@ -16,8 +16,11 @@ export default {
     })
   },
   computed: {
-    filteredList() {
-      return this.data.filter(item => item.parameter[0].parameterValue.includes(this.search));
+    filteredList(){
+      var aset=this.data.filter(item => item.parameter[0].parameterValue.includes(this.search));
+      var bset=this.data.filter(item => item.locationName.includes(this.search));
+      var abset=aset.concat(bset.filter((e)=>{return aset.indexOf(e)===-1}));
+      return abset;
     }
   }
 };
@@ -32,7 +35,7 @@ export default {
         <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
         <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
       </div>
-      <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="臺北市/臺南市/金門等關鍵字...">
+      <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="臺北/臺南/東引/大安(觀測站名稱)關鍵字...">
     </div>
   </nav>
   <div class="row p-5">
