@@ -7,9 +7,10 @@ export default {
     return {
       data:[],
       search: '',
+      searchkey: ''
     };
   },
-  beforeCreate(){
+  created(){
     axios.get(url).then((res)=>{
       this.data=res.data.records.location
       //console.log(this.data)
@@ -17,8 +18,11 @@ export default {
   },
   computed: {
     filteredList(){
-      var aset=this.data.filter(item => item.parameter[0].parameterValue.includes(this.search));
-      var bset=this.data.filter(item => item.locationName.includes(this.search));
+      this.searchkey=this.search
+      this.searchkey=this.searchkey.replace('台','臺')
+      //console.log(this.searchkey)
+      var aset=this.data.filter(item => item.parameter[0].parameterValue.includes(this.searchkey));
+      var bset=this.data.filter(item => item.locationName.includes(this.searchkey));
       var abset=aset.concat(bset.filter((e)=>{return aset.indexOf(e)===-1}));
       return abset;
     }
@@ -44,7 +48,6 @@ export default {
       v-bind:city="x" :citynum="index"/>
       </div>
   </div>
-  
 </template>
 
 <style>

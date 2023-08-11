@@ -12,7 +12,7 @@ export default {
       totaldata:[]
     };
   },
-  beforeCreate(){
+  created(){
     axios.get(url).then((res)=>{
       //console.log(res.data)
       var tep=this.$route.query.userId;
