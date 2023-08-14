@@ -1,9 +1,20 @@
 <script>
+import "leaflet/dist/leaflet.css";
+import { LMap, LTileLayer,LMarker } from "@vue-leaflet/vue-leaflet";
 import axios from 'axios'
 const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-373C6328-6BF2-41B3-BB3B-147802B82875';
 export default {
+  components: {
+        LMap,
+        LTileLayer,
+        LMarker,
+  },
   data() {
     return {
+      zoom: 11,
+      lat: '',
+      lon: '',
+      sname: '',
       wdata:[],
       MaxT:[],
       MinT:[],
@@ -13,6 +24,9 @@ export default {
     };
   },
   created(){
+    this.lat=this.$route.query.lat;
+    this.lon=this.$route.query.lon;
+    this.sname=this.$route.query.sname;
     axios.get(url).then((res)=>{
       //console.log(res.data)
       var tep=this.$route.query.userId;
@@ -40,10 +54,10 @@ export default {
 <template>
   <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></a>
+      <router-link class="navbar-brand" to="/"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></router-link>
       <div class="btn-group btn-group-sm border border-dark border-3">
-        <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
         <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
+        <router-link type="button" class="btn btn-outline-dark" to="/wmap">氣象站座標</router-link>
         <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
       </div>
     </div>
@@ -52,8 +66,21 @@ export default {
     <h3>{{ wdata.locationName }} 未來36小時預報</h3>
   </div>
   <div class="container">
-    <div class="row">
+    <div class="row">    
       <forcastcom v-for="x in totaldata" v-bind:forcastdata="x"></forcastcom>
+      <div class="container p-5">
+        <h3 class="text-white">{{sname}} 觀測站位置圖</h3>
+        <div style="height:400px; width:100%" ref="myDiv">
+            <l-map ref="map" v-model:zoom="zoom" :center="[lat, lon]" :useGlobalLeaflet="false">
+            <l-tile-layer
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                layer-type="base"
+                name="OpenStreetMap"
+            ></l-tile-layer>
+            <l-marker :lat-lng="[lat, lon]"> </l-marker>
+            </l-map>
+        </div>
+      </div>
     </div>
   </div>
 </template>

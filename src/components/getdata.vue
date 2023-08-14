@@ -33,10 +33,10 @@ export default {
 <template>
   <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
     <div class="container-fluid">
-      <a class="navbar-brand"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></a>
+      <router-link class="navbar-brand" to="/"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></router-link>
       <div class="btn-group btn-group-sm border border-dark border-3">
-        <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
         <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
+        <router-link type="button" class="btn btn-outline-dark" to="/wmap">氣象站座標</router-link>
         <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
       </div>
       <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="臺北/臺南/東引/大安(觀測站名稱)關鍵字...">
