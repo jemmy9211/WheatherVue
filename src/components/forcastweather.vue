@@ -69,8 +69,8 @@ export default {
     <div class="row">    
       <forcastcom v-for="x in totaldata" v-bind:forcastdata="x"></forcastcom>
       <div class="container p-5">
-        <h3 class="text-white">{{sname}} 觀測站位置圖</h3>
-        <div style="height:400px; width:100%" ref="myDiv">
+        <h3 class="text-white">{{sname}}</h3><h5 class="text-white">觀測站位置圖</h5>
+        <div style="height:400px; width:100%" ref="myDiv" class="shadow-lg">
             <l-map ref="map" v-model:zoom="zoom" :center="[lat, lon]" :useGlobalLeaflet="false">
             <l-tile-layer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

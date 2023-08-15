@@ -39,7 +39,7 @@ export default {
     </div>
   </nav>
   <div class="text-white shadow-lg p-3 mb-5 bg-dark rounded bg-opacity-50"><h3 class="text-white">全台觀測站位置圖</h3></div>
-  <div class="container p-2">
+  <div class="container p-2 shadow-lg">
         <div style="height:600px; width:100%" ref="myDiv">
             <l-map ref="map" v-model:zoom="zoom" :center="[24.23321, 120.9417]" :useGlobalLeaflet="false">
             <l-tile-layer
@@ -47,22 +47,23 @@ export default {
                 layer-type="base"
                 name="OpenStreetMap"
             ></l-tile-layer>
-            <l-marker v-for="x in data" :lat-lng="[x.lat, x.lon]"><l-icon class-name="someExtraClass">{{x.locationName}}</l-icon></l-marker>
-            <l-control-zoom position="bottomright" zoom-in-text="*" zoom-out-text="/" />
+            <l-marker  v-for="x in data" :lat-lng="[x.lat, x.lon]"><l-icon class-name="someExtraClass">{{x.locationName}}</l-icon></l-marker>
             </l-map>
         </div>
       </div>
 </template>
 <style>
 .someExtraClass {
-  background-color: lightseagreen;
+  background-color: black;
+  color: white;
   padding: 4px;
   border: 1px solid white;
   border-radius: 2px 2px 30px 30px;
-  box-shadow: 5px 3px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 3px 10px rgba(0, 0, 0, 0.8);
   text-align: center;
   width: auto !important;
   height: auto !important;
   margin: 0 !important;
+  opacity: 50;
 }
 </style>
