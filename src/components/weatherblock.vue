@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-4 d-grid gap-1">
+  <div class="col-lg-4 d-grid">
     <router-link class="btn btn-lg bg-opacity-25 border border-primary-subtle rounded-3 border-5 shadow-lg p-3 mb-5 bg-body rounded" :to="{path:'/forcastweather',query:{userId: city.parameter[0].parameterValue,lat: city.lat,lon:city.lon,sname:city.locationName}}">
       <h3 class="text-black"><strong>{{ city.locationName }}  {{ city.weatherElement[3].elementValue }}</strong></h3>
       <h5 class="text-black"><strong>{{ city.parameter[0].parameterValue }} </strong></h5>

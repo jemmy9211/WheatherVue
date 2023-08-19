@@ -50,7 +50,8 @@ export default {
                 layer-type="base"
                 name="OpenStreetMap"
             ></l-tile-layer>
-            <l-marker  v-for="x in data" :lat-lng="[x.lat, x.lon]"><l-popup><span class="badge bg-primary p-2">{{ x.locationName }}  <span class="badge bg-danger"> {{ x.weatherElement[3].elementValue }}度 </span><span class="badge rounded-pill bg-success">{{ x.weatherElement[20].elementValue }}</span></span></l-popup></l-marker>
+            <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
+              v-bind:city="x" :citynum="index"/></l-popup></l-marker>
             </l-map>
         </div>
       </div>
