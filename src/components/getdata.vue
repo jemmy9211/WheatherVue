@@ -11,9 +11,13 @@ export default {
     };
   },
   created(){
-    axios.get(url).then((res)=>{
-      this.data=res.data.records.location
+    axios.get(url)
+    .then((res) => {
+      this.data = res.data.records.location
       //console.log(this.data)
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error)
     })
   },
   computed: {
@@ -35,6 +39,7 @@ export default {
     <div class="container-fluid">
       <router-link class="navbar-brand" to="/"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></router-link>
       <div class="btn-group btn-group-sm border border-dark border-3">
+        <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
         <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
         <router-link type="button" class="btn btn-outline-dark" to="/wmap">全台氣象站位置圖</router-link>
         <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>

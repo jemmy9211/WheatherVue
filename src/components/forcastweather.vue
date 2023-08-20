@@ -46,24 +46,33 @@ export default {
       for(var i=0;i<3;i++){
         this.totaldata[i]=this.Wx[i].startTime+","+this.Wx[i].endTime+","+this.PoPL[i].parameter.parameterName+","+this.MinT[i].parameter.parameterName+","+this.MaxT[i].parameter.parameterName+","+this.Wx[i].parameter.parameterName
       }
+    }).catch((error) => {
+      console.error("An error occurred:", error)
     })
   }
 };
 </script>
 
 <template>
-  <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
-    <div class="container-fluid">
-      <router-link class="navbar-brand" to="/"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></router-link>
-      <div class="btn-group btn-group-sm border border-dark border-3">
-        <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
-        <router-link type="button" class="btn btn-outline-dark" to="/wmap">全台氣象站位置圖</router-link>
-        <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
+  <div class="container-fluid sticky-top">
+  <div class="row">
+    <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
+      <div class="container-fluid">
+        <router-link class="navbar-brand" to="/"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></router-link>
+        <div class="btn-group btn-group-sm border border-dark border-3">
+          <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
+          <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
+          <router-link type="button" class="btn btn-outline-dark" to="/wmap">全台氣象站位置圖</router-link>
+          <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
+        </div>
       </div>
+    </nav>
+  </div>
+  <div class="row">
+    <div class="text-white shadow-lg p-3 mt-2 bg-dark rounded bg-opacity-50">
+      <h3>{{ wdata.locationName }} 未來36小時預報</h3>
     </div>
-  </nav>
-  <div class="text-white shadow-lg p-3 mb-5 bg-dark rounded bg-opacity-50">
-    <h3>{{ wdata.locationName }} 未來36小時預報</h3>
+  </div>
   </div>
   <div class="container">
     <div class="row">    
