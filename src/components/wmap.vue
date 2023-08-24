@@ -18,17 +18,20 @@ export default {
     return {
       data:null,
       zoom: 9,
-      iconUrl: ico
+      iconUrl: ico,
+      showdiv: false
     }
   },
   created(){
     axios.get(url)
     .then((res) => {
       this.data = res.data.records.location
+      this.showdiv=true
       //console.log(this.data)
     })
     .catch((error) => {
       console.error("An error occurred:", error)
+      this.showdiv=false
     })
   },
 };
@@ -54,7 +57,7 @@ export default {
     </div>
   </div>
   </div>
-    <div class="p-4" style="height:600px; width:100%" ref="myDiv">
+    <div v-if="showdiv" class="p-4" style="height:550px; width:100%" ref="myDiv">
         <l-map ref="map" v-model:zoom="zoom" :center="[24.23321, 120.9417]" :useGlobalLeaflet="false">
         <l-tile-layer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -64,6 +67,12 @@ export default {
         <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
           v-bind:city="x" :citynum="index"/></l-popup></l-marker>
         </l-map>
+    </div>
+    <div v-else class="text-white text-center">
+      <br><br><br><div class="spinner-border text-light"></div><br>
+      <h5>中央氣象局API正在更新資料<br>
+      請稍後再重新整理頁面<br>
+      謝謝!</h5>
     </div>
 </template>
 <style>

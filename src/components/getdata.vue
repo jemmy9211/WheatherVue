@@ -7,17 +7,20 @@ export default {
     return {
       data:[],
       search: '',
-      searchkey: ''
+      searchkey: '',
+      showdiv: false
     };
   },
   created(){
     axios.get(url)
     .then((res) => {
       this.data = res.data.records.location
+      this.showdiv=true
       //console.log(this.data)
     })
     .catch((error) => {
       console.error("An error occurred:", error)
+      this.showdiv=false
     })
   },
   computed: {
@@ -47,11 +50,17 @@ export default {
       <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="輸入臺北/臺南/東引/澎湖等關鍵字...">
     </div>
   </nav>
-  <div class="row p-5">
+  <div v-if="showdiv" class="row p-5">
       <div class="row g-2">
         <weather-block v-for="(x,index) in filteredList" 
       v-bind:city="x" :citynum="index"/>
       </div>
+  </div>
+  <div v-else class="text-white text-center">
+    <br><br><br><div class="spinner-border text-light"></div><br>
+    <h5>中央氣象局API正在更新資料<br>
+    請稍後再重新整理頁面<br>
+    謝謝!</h5>
   </div>
 </template>
 

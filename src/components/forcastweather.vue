@@ -9,6 +9,7 @@ export default {
         LTileLayer,
         LMarker,
   },
+  props:['nowdata'],
   data() {
     return {
       zoom: 11,
