@@ -47,7 +47,12 @@ export default {
         <router-link type="button" class="btn btn-outline-dark" to="/wmap">全台氣象站位置圖</router-link>
         <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
       </div>
-      <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="輸入臺北/臺南/東引/澎湖等關鍵字...">
+      <div class="input-group">
+        <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="輸入臺北/臺南/東引/澎湖等關鍵字...">
+        <button type="button" class="btn btn-primary p-2">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
     </div>
   </nav>
   <div v-if="showdiv" class="row p-5">

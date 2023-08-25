@@ -38,7 +38,7 @@ export default {
 };
 </script>
 <template>
-  <div class="container-fluid sticky-top">
+  <div class="container-fluid">
     <div class="row">
       <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
         <div class="container-fluid">
@@ -57,32 +57,31 @@ export default {
         <strong>全台觀測站位置圖!</strong> 點按marker取得觀測站資料!
       </div>
     </div>
-  </div>
-  <div>
-    <div v-if="showdiv" id="map" ref="myDiv">
-        <l-map ref="map" v-model:zoom="zoom" :center="[24.23321, 120.9417]" :useGlobalLeaflet="false">
-        <l-tile-layer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            layer-type="base"
-            name="OpenStreetMap"
-        ></l-tile-layer>
-        <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
-          v-bind:city="x" :citynum="index"/></l-popup></l-marker>
-        </l-map>
-    </div>
-    <div v-else class="text-white text-center">
-      <br><br><br><div class="spinner-border text-light"></div><br>
-      <h5>中央氣象局API正在更新資料<br>
-      請稍後再重新整理頁面<br>
-      謝謝!</h5>
+    <div class="row">
+      <div v-if="showdiv" id="map" ref="myDiv">
+          <l-map ref="map" v-model:zoom="zoom" :center="[24.23321, 120.9417]" :useGlobalLeaflet="false">
+          <l-tile-layer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              layer-type="base"
+              name="OpenStreetMap"
+          ></l-tile-layer>
+          <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
+            v-bind:city="x" :citynum="index"/></l-popup></l-marker>
+          </l-map>
+      </div>
+      <div v-else class="text-white text-center">
+        <br><br><br><div class="spinner-border text-light"></div><br>
+        <h5>中央氣象局API正在更新資料<br>
+        請稍後再重新整理頁面<br>
+        謝謝!</h5>
+      </div>
     </div>
   </div>
 </template>
 <style>
 #map{
-  position: absolute;
-  top: 130px;
   bottom: 0;
+  height: 700px;
   width: 100%;
 }
 </style>
