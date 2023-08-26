@@ -55,9 +55,7 @@ export default {
 </script>
 
 <template>
-  <div class="container-fluid sticky-top">
-  <div class="row">
-    <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
+  <nav class="navbar p-3 text-primary-emphasis bg-light bg-opacity-75 sticky-top">
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/"><h5><i class="bi bi-umbrella-fill"></i> Weather App using Vue</h5></router-link>
         <div class="btn-group btn-group-sm border border-dark border-3">
@@ -67,28 +65,28 @@ export default {
           <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
         </div>
       </div>
-    </nav>
-  </div>
-  <div class="row">
-    <div class="text-white shadow-lg p-3 mt-2 bg-dark rounded bg-opacity-50">
-      <h3>{{ wdata.locationName }} 未來36小時預報</h3>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="text-white shadow-lg p-3 mt-2 bg-dark rounded bg-opacity-50">
+        <h3>{{ wdata.locationName }} 未來36小時預報</h3>
+      </div>
     </div>
-  </div>
-  </div>
-  <div class="container">
-    <div class="row">    
-      <forcastcom v-for="x in totaldata" v-bind:forcastdata="x"></forcastcom>
-      <div class="container p-5">
-        <h3 class="text-white">{{sname}}</h3><h5 class="text-white">觀測站位置圖</h5>
-        <div style="height:400px; width:100%" ref="myDiv" class="shadow-lg">
-            <l-map ref="map" v-model:zoom="zoom" :center="[lat, lon]" :useGlobalLeaflet="false">
-            <l-tile-layer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                layer-type="base"
-                name="OpenStreetMap"
-            ></l-tile-layer>
-            <l-marker :lat-lng="[lat, lon]"> </l-marker>
-            </l-map>
+    <div class="container">
+      <div class="row">    
+        <forcastcom v-for="x in totaldata" v-bind:forcastdata="x"></forcastcom>
+        <div class="container p-5">
+          <h3 class="text-white">{{sname}}</h3><h5 class="text-white">觀測站位置圖</h5>
+          <div style="height:400px; width:100%" ref="myDiv" class="shadow-lg">
+              <l-map ref="map" v-model:zoom="zoom" :center="[lat, lon]" :useGlobalLeaflet="false">
+              <l-tile-layer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  layer-type="base"
+                  name="OpenStreetMap"
+              ></l-tile-layer>
+              <l-marker :lat-lng="[lat, lon]"> </l-marker>
+              </l-map>
+          </div>
         </div>
       </div>
     </div>

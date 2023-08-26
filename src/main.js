@@ -23,8 +23,9 @@ const router = createRouter({
         { path: '/wmap', component: wmap , props: true},
     ]
 });
-router.afterEach((to, from, next) => {
-	window.scrollTo(0, -10);
+router.beforeEach((to, from, next) => {
+	window.scrollTo(0, 0);
+    next();
 });
 const app = createApp(App)
 app.component('weather-block', weatherblock)
