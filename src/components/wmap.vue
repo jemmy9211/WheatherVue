@@ -18,12 +18,27 @@ export default {
   data(){
     return {
       data:null,
-      zoom: 9,
+      zoom: 12,
       iconUrl: ico,
-      showdiv: false
+      showdiv: false,
+      showmap:false,
+      currentlocationx: '',
+      currentlocationy: '',
+      iconSize: 64
     }
   },
   created(){
+    const success = (position) => {
+        const latitude  = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        this.currentlocationx=latitude;
+        this.currentlocationy=longitude;
+    };
+    const error = (err) => {
+        console.log(error)
+    };
+    navigator.geolocation.getCurrentPosition(success, error);
+    
     axios.get(url)
     .then((res) => {
       this.data = res.data.records.location
@@ -35,6 +50,14 @@ export default {
       this.showdiv=false
     })
   },
+  computed: {
+    dynamicSize () {
+      return [this.iconSize, this.iconSize * 1.15];
+    },
+    dynamicAnchor () {
+      return [this.iconSize / 2, this.iconSize * 1.15];
+    }
+  }
 };
 </script>
 <template>
@@ -59,7 +82,7 @@ export default {
     </div>
     <div class="row">
       <div v-if="showdiv" id="map" ref="myDiv">
-          <l-map ref="map" v-model:zoom="zoom" :center="[24.23321, 120.9417]" :useGlobalLeaflet="false">
+          <l-map ref="map" v-model:zoom="zoom" :center="[currentlocationx, currentlocationy]" :useGlobalLeaflet="false">
           <l-tile-layer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               layer-type="base"
@@ -67,6 +90,7 @@ export default {
           ></l-tile-layer>
           <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
             v-bind:city="x" :citynum="index"/></l-popup></l-marker>
+          <l-marker :lat-lng="[currentlocationx, currentlocationy]"><l-icon :icon-size="dynamicSize" :icon-anchor="dynamicAnchor" icon-url="src/assets/destination.png"></l-icon><l-popup>你的位置</l-popup></l-marker>
           </l-map>
       </div>
       <div v-else class="text-white text-center">
