@@ -36,14 +36,14 @@ export default {
       for(var i=0;i<this.data.length;i++){
         tep=0;
         tep=this.haversineDistance(this.currentlocationx,this.currentlocationy,this.data[i].lat,this.data[i].lon)
-        console.log(tep)
+        //console.log(tep)
         if(tep<=mtep){
           mtep=tep;
           this.currentlocation=this.data[i];
         }
       }
       this.showcurrent=true
-      console.log(this.currentlocation)
+      //console.log(this.currentlocation)
     })
     .catch((error) => {
       console.error("An error occurred:", error)
@@ -100,11 +100,12 @@ export default {
     </div>
   </nav>
   <div v-if="showdiv" class="row p-5">
-      <div class="container bg-dark bg-opacity-50 p-3 rounded">
-        <h5 class="text-light">距離目前位置最近觀測站</h5>
-        <weather-block v-if="showcurrent" v-bind:city="this.currentlocation"></weather-block>
-      </div>
       <div class="row g-2">
+        <!-- <div class="container bg-dark bg-opacity-50 p-3 rounded"> -->
+          <h5 class="text-light">距離目前位置最近觀測站<i class="bi bi-arrow-down"></i></h5>
+          <weather-block v-if="showcurrent" v-bind:city="this.currentlocation"></weather-block>
+        <!-- </div> -->
+        <h5 class="text-light">以下為搜尋結果<i class="bi bi-arrow-down"></i></h5>
         <weather-block v-for="(x,index) in filteredList" 
       v-bind:city="x" :citynum="index"/>
       </div>

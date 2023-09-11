@@ -90,7 +90,7 @@ export default {
           ></l-tile-layer>
           <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
             v-bind:city="x" :citynum="index"/></l-popup></l-marker>
-          <l-marker :lat-lng="[currentlocationx, currentlocationy]"><l-icon :icon-size="dynamicSize" :icon-anchor="dynamicAnchor" icon-url="src/assets/destination.png"></l-icon><l-popup>你的位置</l-popup></l-marker>
+          <l-marker :lat-lng="[currentlocationx, currentlocationy]"></l-marker>
           </l-map>
       </div>
       <div v-else class="text-white text-center">
