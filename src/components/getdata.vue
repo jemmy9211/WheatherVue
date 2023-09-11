@@ -1,83 +1,74 @@
 <script>
 import axios from 'axios'
+import Weatherblock from './weatherblock.vue';
 const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-373C6328-6BF2-41B3-BB3B-147802B82875';
 
 export default {
-  data() {
-    return {
-      data:[],
-      search: '',
-      searchkey: '',
-      showdiv: false,
-      showcurrent:false,
-      currentlocationx:'',
-      currentlocationy:'',
-      currentlocation:null
-    };
-  },
-  created(){
-    const success = (position) => {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        this.currentlocationx=latitude;
-        this.currentlocationy=longitude;
-    };
-    const error = (err) => {
-        console.log(error)
-    };
-    navigator.geolocation.getCurrentPosition(success, error);
-    axios.get(url)
-    .then((res) => {
-      this.data = res.data.records.location
-      this.showdiv=true
-      //console.log(this.data.length)
-      var tep=0;
-      var mtep=1000000;
-      for(var i=0;i<this.data.length;i++){
-        tep=0;
-        tep=this.haversineDistance(this.currentlocationx,this.currentlocationy,this.data[i].lat,this.data[i].lon)
-        console.log(tep)
-        if(tep<=mtep){
-          mtep=tep;
-          this.currentlocation=this.data[i];
+    data() {
+        return {
+            data: [],
+            search: '',
+            searchkey: '',
+            showdiv: false,
+            showcurrent: false,
+            currentlocationx: '',
+            currentlocationy: '',
+            currentlocation: null
+        };
+    },
+    created() {
+        const success = (position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            this.currentlocationx = latitude;
+            this.currentlocationy = longitude;
+        };
+        const error = (err) => {
+            console.log(error);
+        };
+        navigator.geolocation.getCurrentPosition(success, error);
+        axios.get(url)
+            .then((res) => {
+            this.data = res.data.records.location;
+            //console.log(this.data.length)
+            var tep = 0;
+            var mtep = 1000000;
+            for (var i = 0; i < this.data.length; i++) {
+                tep = 0;
+                tep = this.haversineDistance(this.currentlocationx, this.currentlocationy, this.data[i].lat, this.data[i].lon);
+                if (tep <= mtep) {
+                    mtep = tep;
+                    this.currentlocation = this.data[i];
+                }
+            };
+            //console.log(this.currentlocation);
+            this.showdiv = true;
+            this.showcurrent = true;
+        }).catch((error) => {
+            console.error("An error occurred:", error);
+            this.showdiv = false;
+        });
+    },
+    computed: {
+        filteredList() {
+            this.searchkey = this.search;
+            this.searchkey = this.searchkey.replace('台', '臺');
+            //console.log(this.searchkey)
+            var aset = this.data.filter(item => item.parameter[0].parameterValue.includes(this.searchkey));
+            var bset = this.data.filter(item => item.locationName.includes(this.searchkey));
+            var abset = aset.concat(bset.filter((e) => { return aset.indexOf(e) === -1; }));
+            return abset;
         }
-      }
-      this.showcurrent=true
-      console.log(this.currentlocation)
-    })
-    .catch((error) => {
-      console.error("An error occurred:", error)
-      this.showdiv=false
-    });
-  },
-  computed: {
-    filteredList(){
-      this.searchkey=this.search
-      this.searchkey=this.searchkey.replace('台','臺')
-      //console.log(this.searchkey)
-      var aset=this.data.filter(item => item.parameter[0].parameterValue.includes(this.searchkey));
-      var bset=this.data.filter(item => item.locationName.includes(this.searchkey));
-      var abset=aset.concat(bset.filter((e)=>{return aset.indexOf(e)===-1}));
-      return abset;
-    }
-  },
-  methods:{
-    haversineDistance(lat1, lon1, lat2, lon2) {
-      const earthRadiusKm = 6371;
-      const dLat = (lat2 - lat1) * (Math.PI / 180);
-      const dLon = (lon2 - lon1) * (Math.PI / 180);
-      const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) *
-          Math.cos(lat2 * (Math.PI / 180)) *
-          Math.sin(dLon / 2) *
-          Math.sin(dLon / 2);
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      const distance = earthRadiusKm * c;
-
-      return distance;
-    }
-  }
+    },
+    methods: {
+        haversineDistance(lat1, lon1, lat2, lon2) {
+            var a = Math.round(Math.abs(lat1 - lat2) * 100);
+            var b = Math.round(Math.abs(lon1 - lon2) * 100);
+            var distance = Math.round(Math.sqrt(a * a + b * b) * 100);
+            return distance;
+        }
+    },
+    components: { Weatherblock }
 };
 </script>
 
@@ -100,13 +91,13 @@ export default {
     </div>
   </nav>
   <div v-if="showdiv" class="row p-5">
-      <div class="container bg-dark bg-opacity-50 p-3 rounded">
-        <h5 class="text-light">距離目前位置最近觀測站</h5>
-        <weather-block v-if="showcurrent" v-bind:city="this.currentlocation"></weather-block>
-      </div>
       <div class="row g-2">
+        <div class="container col-lg-4 d-grid bg-dark bg-opacity-50 p-3 rounded">
+          <h5 class="text-light">距離目前位置最近觀測站</h5>
+          <weather-block v-bind:city="currentlocation" :currentblock="true"></weather-block>
+        </div>
         <weather-block v-for="(x,index) in filteredList" 
-      v-bind:city="x" :citynum="index"/>
+      v-bind:city="x" :citynum="index" :currentblock="false"/>
       </div>
   </div>
   <div v-else class="text-white text-center">
