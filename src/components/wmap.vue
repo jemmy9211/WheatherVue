@@ -18,7 +18,7 @@ export default {
   data(){
     return {
       data:null,
-      zoom: 12,
+      zoom: 8,
       iconUrl: ico,
       showdiv: false,
       showmap:false,
@@ -28,17 +28,6 @@ export default {
     }
   },
   created(){
-    const success = (position) => {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        this.currentlocationx=latitude;
-        this.currentlocationy=longitude;
-    };
-    const error = (err) => {
-        console.log(error)
-    };
-    navigator.geolocation.getCurrentPosition(success, error);
-    
     axios.get(url)
     .then((res) => {
       this.data = res.data.records.location
@@ -49,14 +38,6 @@ export default {
       console.error("An error occurred:", error)
       this.showdiv=false
     })
-  },
-  computed: {
-    dynamicSize () {
-      return [this.iconSize, this.iconSize * 1.15];
-    },
-    dynamicAnchor () {
-      return [this.iconSize / 2, this.iconSize * 1.15];
-    }
   }
 };
 </script>
@@ -82,7 +63,7 @@ export default {
     </div>
     <div class="row">
       <div v-if="showdiv" id="map" ref="myDiv">
-          <l-map ref="map" v-model:zoom="zoom" :center="[currentlocationx, currentlocationy]" :useGlobalLeaflet="false">
+          <l-map ref="map" v-model:zoom="zoom" :center="[23.45889,120.9417]" :useGlobalLeaflet="false">
           <l-tile-layer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               layer-type="base"
@@ -90,7 +71,6 @@ export default {
           ></l-tile-layer>
           <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
             v-bind:city="x" :citynum="index"/></l-popup></l-marker>
-          <l-marker :lat-lng="[currentlocationx, currentlocationy]"></l-marker>
           </l-map>
       </div>
       <div v-else class="text-white text-center">

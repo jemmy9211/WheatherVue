@@ -17,33 +17,10 @@ export default {
         };
     },
     created() {
-        const success = (position) => {
-            const latitude = position.coords.latitude;
-            const longitude = position.coords.longitude;
-            this.currentlocationx = latitude;
-            this.currentlocationy = longitude;
-        };
-        const error = (err) => {
-            console.log(error);
-        };
-        navigator.geolocation.getCurrentPosition(success, error);
         axios.get(url)
             .then((res) => {
             this.data = res.data.records.location;
-            //console.log(this.data.length)
-            var tep = 0;
-            var mtep = 1000000;
-            for (var i = 0; i < this.data.length; i++) {
-                tep = 0;
-                tep = this.haversineDistance(this.currentlocationx, this.currentlocationy, this.data[i].lat, this.data[i].lon);
-                if (tep <= mtep) {
-                    mtep = tep;
-                    this.currentlocation = this.data[i];
-                }
-            };
-            //console.log(this.currentlocation);
             this.showdiv = true;
-            this.showcurrent = true;
         }).catch((error) => {
             console.error("An error occurred:", error);
             this.showdiv = false;
@@ -61,12 +38,7 @@ export default {
         }
     },
     methods: {
-        haversineDistance(lat1, lon1, lat2, lon2) {
-            var a = Math.round(Math.abs(lat1 - lat2) * 100);
-            var b = Math.round(Math.abs(lon1 - lon2) * 100);
-            var distance = Math.round(Math.sqrt(a * a + b * b) * 100);
-            return distance;
-        }
+        
     },
     components: { Weatherblock }
 };
@@ -92,10 +64,6 @@ export default {
   </nav>
   <div v-if="showdiv" class="row p-5">
       <div class="row g-2">
-        <div class="container col-lg-4 d-grid bg-dark bg-opacity-50 p-3 rounded">
-          <h5 class="text-light">距離目前位置最近觀測站</h5>
-          <weather-block v-bind:city="currentlocation" :currentblock="true"></weather-block>
-        </div>
         <weather-block v-for="(x,index) in filteredList" 
       v-bind:city="x" :citynum="index" :currentblock="false"/>
       </div>
