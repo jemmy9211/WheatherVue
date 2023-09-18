@@ -12,7 +12,6 @@ import forcastcom from './components/forcastcom.vue'
 import wicon from './components/wicon.vue'
 import wmap from './components/wmap.vue'
 import { createRouter, createWebHashHistory  } from 'vue-router'
-import './registerServiceWorker'
 
 const router = createRouter({
     history: createWebHashHistory(),
