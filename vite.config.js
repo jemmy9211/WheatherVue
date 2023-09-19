@@ -12,19 +12,7 @@ export default defineConfig({
       manifest: {
         name: 'WeatherVue',
         short_name: 'WeatherVue',
-        description: 'WeatherApp made by vue',
-        icons: [
-          {
-            src: 'img/icons/apple-touch-icon-120x120.png',
-            sizes: '192x192',
-            type: 'image/png'
-          },
-          {
-            src: 'img/icons/apple-touch-icon.png',
-            sizes: '512x512',
-            type: 'image/png'
-          }
-        ]
+        description: 'WeatherApp made by vue'
       }
     })
   ],
