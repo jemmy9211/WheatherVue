@@ -13,10 +13,29 @@
   <div class="container">
       <br>
       <h5><span class="badge bg-success">雷達整合回波圖-臺灣</span></h5>
-      <img src="https://cwbopendata.s3.ap-northeast-1.amazonaws.com/Observation/O-A0058-003.png" class="img-thumbnail" alt="Cinque Terre">
+      <img v-bind:src="this.raderlink" class="img-thumbnail" alt="Cinque Terre">
   </div>
 </template>
 <script>
+import axios from 'axios'
+const url ='https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-A0058-003?Authorization=CWB-0938953C-FF69-46E0-9F18-D43F2663E554&downloadType=WEB&format=JSON'
+export default{
+  data(){
+    return{
+      raderlink:''
+    }
+  },
+  created(){
+    axios.get(url)
+    .then((res) => {
+      this.raderlink = res.data.cwaopendata.dataset.resource.ProductURL
+      //console.log(this.raderlink)
+    })
+    .catch((error) => {
+      console.error("An error occurred:", error)
+    })
+  }
+}
 </script>
 <style>
 </style>
