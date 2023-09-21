@@ -10,11 +10,17 @@
       </div>
     </div>
   </nav>
-  <div class="container">
+  <div v-if="showdiv" class="container">
       <br>
       <h5><span class="badge bg-success">雷達整合回波圖-臺灣</span></h5>
       <img v-bind:src="this.raderlink" class="img-thumbnail" alt="Cinque Terre">
   </div>
+  <div v-else class="text-white text-center">
+        <br><br><br><div class="spinner-border text-light"></div><br>
+        <h5>中央氣象局API正在更新資料<br>
+        請稍後再重新整理頁面<br>
+        謝謝!</h5>
+      </div>
 </template>
 <script>
 import axios from 'axios'
@@ -22,13 +28,15 @@ const url ='https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-A0058-003?Autho
 export default{
   data(){
     return{
-      raderlink:''
+      raderlink:'',
+      showdiv:false
     }
   },
   created(){
     axios.get(url)
     .then((res) => {
       this.raderlink = res.data.cwaopendata.dataset.resource.ProductURL
+      this.showdiv=true
       //console.log(this.raderlink)
     })
     .catch((error) => {
