@@ -33,7 +33,9 @@ export default{
     }
   },
   created(){
-    axios.get(url)
+    axios.get(url,{
+      mode: 'no-cors'
+    })
     .then((res) => {
       this.raderlink = res.data.cwaopendata.dataset.resource.ProductURL
       this.showdiv=true
