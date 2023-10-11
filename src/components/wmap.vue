@@ -3,7 +3,7 @@ import "leaflet/dist/leaflet.css";
 import { LMap, LTileLayer,LMarker,LControlZoom,LIcon,LPopup,LControl} from "@vue-leaflet/vue-leaflet";
 import ico from "../assets/location-pin.png"
 import axios from 'axios'
-const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-373C6328-6BF2-41B3-BB3B-147802B82875';
+const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWA-FAC637E3-79B2-4800-B15D-9E19F7BB350B';
 export default {
    components: {
     LMap,

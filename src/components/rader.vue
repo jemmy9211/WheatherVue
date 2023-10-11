@@ -24,7 +24,7 @@
 </template>
 <script>
 import axios from 'axios'
-const url ='https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-A0058-003?Authorization=CWB-0938953C-FF69-46E0-9F18-D43F2663E554&downloadType=WEB&format=JSON'
+const url ='https://opendata.cwa.gov.tw/fileapi/v1/opendataapi/O-A0058-003?Authorization=CWA-FAC637E3-79B2-4800-B15D-9E19F7BB350B&downloadType=WEB&format=JSON'
 export default{
   data(){
     return{

@@ -12,7 +12,7 @@
 
 **專案github page連結:** https://jemmy9211.github.io/WeatherVue/ 
 
-> 中央氣象局近期升級成氣象署所以郭一陣子要重新更新授權碼2023/10/11 by jemmy at Selab   
+> 中央氣象局近期升級成氣象署所以過一陣子要重新更新授權碼2023/10/11 by jemmy at Selab   
 
 ### Reference
 - 部屬 **vue project** 到 **github pages**的連結  
