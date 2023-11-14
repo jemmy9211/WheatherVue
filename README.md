@@ -1,23 +1,21 @@
-# WeatherVue  
-### Introduction  
-此網頁串接中華民國(台灣)氣象局的公開API，利用該API提供的資料進行視覺化處理，使複雜的資料可以讓使用者讀取容易，此專案使用到的技術有Vue、Bootstrap、leaflet，上述3工具使網頁的搭建快速且實用，以下整理該網頁主要亮點  
+# WeatherVue
 
+## Introduction
 
-1. 提供全台觀測站即時資訊(溫度、風速、預報...)  
-2. 提供觀測站的位置定位
-3. 全台觀測站地圖(點按地圖mark可得到待觀測站資訊)  
-4. 可搜尋觀測站名稱或是地名來取得相關觀測站的資料  
-5. 雷達迴波圖
-  
+WeatherVue is a web application that integrates with the public API provided by the Central Weather Bureau of the Republic of China (Taiwan). Utilizing the data offered by this API, the application employs advanced visualization techniques to enhance the accessibility of complex weather data for users. The project leverages Vue, Bootstrap, and Leaflet technologies, facilitating the rapid and practical development of the web interface. The following highlights the key features of the website:
 
-**專案github page連結:** https://jemmy9211.github.io/WeatherVue/ 
+- Real-time information from weather observation stations across Taiwan (including temperature, wind speed, forecasts, etc.).
+- Location positioning of observation stations.
+- Interactive map displaying weather observation stations throughout Taiwan (clicking on map markers provides details about the respective observation station).
+- Search functionality enabling users to obtain data related to observation stations by station name or location.
+- Radar echo map.
 
-> 中央氣象局近期升級成氣象署所以過一陣子要重新更新授權碼2023/10/11 by jemmy at Selab   
+Project GitHub Page Link: [WeatherVue GitHub Page](https://jemmy9211.github.io/WeatherVue/)
 
-### Reference
-- 部屬 **vue project** 到 **github pages**的連結  
-https://dev.to/yubo0826/vuevite-bu-shu-dao-github-pagesjian-yi-jiao-xue-1l9n  
-- **vue router傳遞參數方法**
-https://juejin.cn/post/6999913464361648159
-- 氣象局縮寫對造  
-https://opendata.cwb.gov.tw/opendatadoc/MFC/D0047.pdf
+Please note that the Central Weather Bureau recently upgraded to the Meteorological Agency, necessitating the upcoming update of the authorization code. Last updated on 2023/10/11 by Jemmy at Selab.
+
+## Reference
+
+- Deploying a Vue project to GitHub Pages: [Link](https://dev.to/yubo0826/vuevite-bu-shu-dao-github-pagesjian-yi-jiao-xue-1l9n)
+- Methods for passing parameters with Vue Router: [Link](https://juejin.cn/post/6999913464361648159)
+- Guide to meteorological bureau abbreviations: [Link](https://opendata.cwb.gov.tw/opendatadoc/MFC/D0047.pdf)
