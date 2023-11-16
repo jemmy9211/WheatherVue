@@ -30,7 +30,7 @@ export default {
   created(){
     axios.get(url)
     .then((res) => {
-      this.data = res.data.records.location
+      this.data = res.data.records.Station
       this.showdiv=true
       //console.log(this.data)
     })
@@ -69,7 +69,7 @@ export default {
               layer-type="base"
               name="OpenStreetMap"
           ></l-tile-layer>
-          <l-marker  v-for="(x,index) in data" :lat-lng="[x.lat, x.lon]"><l-popup><weather-block style="height: auto;width: auto;"
+          <l-marker  v-for="(x,index) in data" :lat-lng="[x.GeoInfo.Coordinates[0].StationLatitude, x.GeoInfo.Coordinates[0].StationLongitude]"><l-popup><weather-block style="height: auto;width: auto;"
             v-bind:city="x" :citynum="index"/></l-popup></l-marker>
           </l-map>
       </div>

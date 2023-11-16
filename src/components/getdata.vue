@@ -19,7 +19,8 @@ export default {
     created() {
         axios.get(url)
             .then((res) => {
-            this.data = res.data.records.location;
+            this.data = res.data.records.Station;
+            //console.log(res)
             this.showdiv = true;
         }).catch((error) => {
             console.error("An error occurred:", error);
@@ -31,8 +32,8 @@ export default {
             this.searchkey = this.search;
             this.searchkey = this.searchkey.replace('台', '臺');
             //console.log(this.searchkey)
-            var aset = this.data.filter(item => item.parameter[0].parameterValue.includes(this.searchkey));
-            var bset = this.data.filter(item => item.locationName.includes(this.searchkey));
+            var aset = this.data.filter(item => item.GeoInfo.CountyName.includes(this.searchkey));
+            var bset = this.data.filter(item => item.StationName.includes(this.searchkey));
             var abset = aset.concat(bset.filter((e) => { return aset.indexOf(e) === -1; }));
             return abset;
         }
