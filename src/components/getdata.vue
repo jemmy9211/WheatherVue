@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios'
-import Weatherblock from './weatherblock.vue';
 const url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWA-FAC637E3-79B2-4800-B15D-9E19F7BB350B';
 
 export default {
@@ -40,8 +39,7 @@ export default {
     },
     methods: {
         
-    },
-    components: { Weatherblock }
+    }
 };
 </script>
 
@@ -63,17 +61,19 @@ export default {
       </div>
     </div>
   </nav>
-  <div v-if="showdiv" class="row p-5">
+  <div class="container overflow-auto mb-7" style="height: 800px">
+    <div v-if="showdiv" class="row p-5">
       <div class="row g-2">
         <weather-block v-for="(x,index) in filteredList" 
       v-bind:city="x" :citynum="index" :currentblock="false"/>
       </div>
-  </div>
-  <div v-else class="text-white text-center">
-    <br><br><br><div class="spinner-border text-light"></div><br>
-    <h5>中央氣象局API正在更新資料<br>
-    請稍後再重新整理頁面<br>
-    謝謝!</h5>
+    </div>
+    <div v-else class="text-white text-center">
+      <br><br><br><div class="spinner-border text-light"></div><br>
+      <h5>中央氣象局API正在更新資料<br>
+      請稍後再重新整理頁面<br>
+      謝謝!</h5>
+    </div>
   </div>
 </template>
 

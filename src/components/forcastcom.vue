@@ -25,7 +25,7 @@
 </script>
 
 <template>
-    <div class="shadow-lg col-lg-4 d-grid gap-1 bg-opacity-25 bg-dark text-white p-3 border border-light border-3">
+    <div class="shadow-lg col-lg-4 d-grid gap-1 bg-opacity-75 bg-dark text-white p-3 border border-light border-3">
         <h5>{{ stime }}點~{{ etime }}點</h5>
         <h4><wicon v-bind:wvalue="Wx"></wicon><strong>{{ Wx }}</strong></h4>
         最高溫:{{ MaxT }}

@@ -32,11 +32,11 @@ export default {
       //console.log(res.data)
       var tep=this.$route.query.userId;
       tep=2
-      console.log(res.data.records.location.length)
+      //console.log(this.$route.query.userId)
       for(var i=0;i<res.data.records.location.length;i++){
         if(this.$route.query.userId==res.data.records.location[i].locationName){
           tep=i;
-          console.log(i)
+          //console.log(i)
         }
       }
       this.wdata=res.data.records.location[tep]
@@ -68,16 +68,16 @@ export default {
   </nav>
   <div class="container-fluid">
     <div class="row">
-      <div class="text-white shadow-lg p-3 mt-2 bg-dark rounded bg-opacity-50">
+      <div class="text-white shadow-lg p-3 bg-dark rounded bg-opacity-75">
         <h3>{{ wdata.locationName }} 未來36小時預報</h3>
       </div>
     </div>
-    <div class="container">
+    <div class="container overflow-auto" style="height: 800px">
       <div class="row">    
         <forcastcom v-for="x in totaldata" v-bind:forcastdata="x"></forcastcom>
         <div class="container p-5">
           <h3 class="text-white">{{sname}}</h3><h5 class="text-white">觀測站位置圖</h5>
-          <div style="height:400px; width:100%" ref="myDiv" class="shadow-lg">
+          <div style="height:400px; width:100%" ref="myDiv" class="shadow-lg mb-5">
               <l-map ref="map" v-model:zoom="zoom" :center="[lat, lon]" :useGlobalLeaflet="false">
               <l-tile-layer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

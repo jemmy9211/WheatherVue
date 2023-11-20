@@ -10,7 +10,7 @@
       </div>
     </div>
   </nav>
-  <div v-if="showdiv" class="container">
+  <div v-if="showdiv" class="container overflow-auto" style="height: 800px">
       <br>
       <h5><span class="badge bg-success">雷達整合回波圖-臺灣</span></h5>
       <img v-bind:src="this.raderlink" class="img-thumbnail" alt="Cinque Terre">
