@@ -51,7 +51,8 @@ export default {
         <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
         <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
         <router-link type="button" class="btn btn-outline-dark" to="/wmap">全台氣象站位置圖</router-link>
-        <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
+        <router-link type="button" class="btn btn-outline-dark" to="/info">網站簡介</router-link>
+        <!-- <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button> -->
       </div>
       <div class="input-group">
         <input class="form-control mr-sm-2 p-2" v-model="search" placeholder="輸入臺北/臺南/東引/澎湖等關鍵字...">
@@ -61,7 +62,7 @@ export default {
       </div>
     </div>
   </nav>
-  <div class="container overflow-auto mb-7" style="height: 800px">
+  <div class="container overflow-auto mb-7" style="height: 600px">
     <div v-if="showdiv" class="row p-5">
       <div class="row g-2">
         <weather-block v-for="(x,index) in filteredList" 

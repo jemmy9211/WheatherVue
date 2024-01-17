@@ -24,10 +24,12 @@ export default {
       showmap:false,
       currentlocationx: '',
       currentlocationy: '',
-      iconSize: 64
+      iconSize: 64,
+      winheight:0
     }
   },
   created(){
+    this.winheight=window.innerHeight
     axios.get(url)
     .then((res) => {
       this.data = res.data.records.Station
@@ -52,7 +54,8 @@ export default {
             <router-link type="button" class="btn btn-outline-dark" to="/">回首頁</router-link>
             <router-link type="button" class="btn btn-outline-dark" to="/rader">及時雷達回波圖</router-link>
             <router-link type="button" class="btn btn-outline-dark" to="/wmap">全台氣象站位置圖</router-link>
-            <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button>
+            <router-link type="button" class="btn btn-outline-dark" to="/info">網站簡介</router-link>
+            <!-- <button type="button" class="btn btn-outline-dark" onclick="javascript:location.href='https://jemmy9211.github.io/'">Jemmy website</button> -->
           </div>
         </div>
       </nav>
@@ -86,7 +89,7 @@ export default {
 <style>
 #map{
   bottom: 0;
-  height: 700px;
+  height: 450px;
   width: 100%;
 }
 </style>

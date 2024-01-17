@@ -11,6 +11,7 @@ import rader from './components/rader.vue'
 import forcastcom from './components/forcastcom.vue'
 import wicon from './components/wicon.vue'
 import wmap from './components/wmap.vue'
+import info from './components/info.vue'
 import { createRouter, createWebHashHistory  } from 'vue-router'
 
 const router = createRouter({
@@ -21,6 +22,7 @@ const router = createRouter({
         { path: '/forcastweather',name:'forcastweather', component: forcastweather},
         { path: '/rader', component: rader , props: true},
         { path: '/wmap', component: wmap , props: true},
+        { path: '/info', component: info , props: true},
     ]
 });
 router.beforeEach((to, from, next) => {
@@ -35,5 +37,6 @@ app.component('rader',rader)
 app.component('forcastcom',forcastcom)
 app.component('wicon',wicon)
 app.component('wmap',wmap)
+app.component('info',info)
 app.use(router);
 app.mount('#app')
