@@ -62,15 +62,15 @@ export default {
       </div>
     </div>
   </nav>
-  <div class="container overflow-auto mb-7" style="height: calc(100vh - 150px)">
-    <div v-if="showdiv" class="row p-3 p-md-5">
+  <div class="container overflow-auto mb-7" style="height: 600px">
+    <div v-if="showdiv" class="row p-5">
       <div class="row g-2">
         <weather-block v-for="(x,index) in filteredList" 
-      v-bind:city="x" :citynum="index" :currentblock="false" class="col-12 col-sm-6 col-md-4 col-lg-3"/>
+      v-bind:city="x" :citynum="index" :currentblock="false"/>
       </div>
     </div>
-    <div v-else class="text-white text-center py-5">
-      <div class="spinner-border text-light mb-3"></div>
+    <div v-else class="text-white text-center">
+      <br><br><br><div class="spinner-border text-light"></div><br>
       <h5>中央氣象局API正在更新資料<br>
       請稍後再重新整理頁面<br>
       謝謝!</h5>

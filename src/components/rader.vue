@@ -11,12 +11,10 @@
       </div>
     </div>
   </nav>
-  <div v-if="showdiv" class="container overflow-auto" style="height: calc(100vh - 150px)">
+  <div v-if="showdiv" class="container overflow-auto" style="height: 800px">
       <br>
       <h5><span class="badge bg-success">雷達整合回波圖-臺灣</span></h5>
-      <div class="d-flex justify-content-center align-items-center h-100">
-        <img v-bind:src="this.raderlink" class="img-thumbnail img-fluid" alt="雷達回波圖" style="max-height: 90%; max-width: 100%; object-fit: contain;">
-      </div>
+      <img v-bind:src="this.raderlink" class="img-thumbnail" alt="Cinque Terre">
   </div>
   <div v-else class="text-white text-center">
         <br><br><br><div class="spinner-border text-light"></div><br>
