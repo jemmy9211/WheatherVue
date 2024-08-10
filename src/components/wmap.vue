@@ -66,7 +66,7 @@ export default {
       </div>
     </div>
     <div class="row">
-      <div v-if="showdiv" id="map" ref="myDiv">
+      <div v-if="showdiv" id="map" ref="myDiv" :style="{ height: winheight - 230 + 'px' }">
           <l-map ref="map" v-model:zoom="zoom" :center="[23.45889,120.9417]" :useGlobalLeaflet="false">
           <l-tile-layer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
